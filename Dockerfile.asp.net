@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+
+ARG LYRA_VERSION
+
+ENV LYRA_NETWORK=testnet
+
+RUN cat /etc/os-release && \
+    wget -O /tmp/lyra.tar.gz -q --show-progress --progress=bar:force:noscroll https://github.com/graft-project/LyraNetwork/releases/download/${LYRA_VERSION}/lyra.permissionless-${LYRA_VERSION}.tar.gz && \
+    apt-get update && apt-get install -y bzip2 && \
+    tar xvfj /tmp/lyra.tar.gz -C /opt && \
+    rm -rf /tmp/lyra.tar.gz /var/lib/apt/lists/*
+
+RUN dotnet dev-certs https --clean && \
+    dotnet dev-certs https && \
+    dotnet /opt/lyra/cli/lyracli.dll --networkid testnet -p webapi -g poswallet
+
+EXPOSE 4505
+
+WORKDIR /opt/lyra/node
+
+CMD dotnet Lyra.Node2.dll

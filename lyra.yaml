@@ -1,0 +1,36 @@
+---
+
+version: '3.2'
+
+services:
+
+  lyra.node:
+    image: lyranode:latest
+    container_name : lyra.node
+    depends_on: 
+      - mongodb
+    build:
+      context: .
+      dockerfile: Dockerfile.asp.net
+      args:
+        LYRA_VERSION: 1.1.19
+    ports:
+      - 4503:4503
+      - 4504:4504
+      - 4505:4505
+    volumes:
+      - ./config.testnet.json:/opt/lyra/node/config.testnet.json
+
+  mongodb:
+    image: mongo:4.2.3-bionic
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: admin
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro

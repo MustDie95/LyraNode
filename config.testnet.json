@@ -1,0 +1,31 @@
+{
+  "ApplicationConfiguration": {
+    "LyraNode": {
+      "Lyra": {
+        "NetworkId": "testnet",
+        "Database": {
+          "DatabaseName": "lyra",
+          "DBConnect": "mongodb://lexuser:lexpassword@mongodb/lyra",
+          "DexDBConnect": "mongodb://dexuser:dexpassword@mongodb/dex"
+        },
+        "Wallet": {
+          "Name": "poswallet"
+        }
+      }
+    },
+    "Storage": {
+      "Engine": "LevelDBStore"
+    },
+    "P2P": {
+      "Port": 4503,
+      "WsPort": 4504
+    },
+    "UnlockWallet": {
+      "Path": "",
+      "Password": "",
+      "StartConsensus": false,
+      "IsActive": false
+    },
+    "PluginURL": "https://github.com/neo-project/neo-modules/releases/download/v{1}/{0}.zip"
+  }
+}
