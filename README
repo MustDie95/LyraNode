@@ -1,0 +1,5 @@
+docker-compose -f lyra.yaml up -d
+
+docker logs -f --tail -n=1000 mongodb
+
+docker logs -f --tail -n=1000 lyra.node
