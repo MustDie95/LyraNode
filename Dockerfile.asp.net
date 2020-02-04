@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1
 
-ARG LYRA_VERSION=1.2.1
+ARG LYRA_VERSION
 
 ENV LYRA_NETWORK=testnet
 
@@ -13,7 +13,7 @@ RUN cat /etc/os-release && \
 RUN dotnet dev-certs https --clean && \
     dotnet dev-certs https
 
-EXPOSE 4505
+EXPOSE 4503 4504 4505
 
 WORKDIR /opt/lyra/node
 
