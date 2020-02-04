@@ -4,6 +4,6 @@
 
 3) Look into logs:
   
-  docker logs -f --tail -n=1000 mongodb
+  docker logs --follow --timestamps --details --tail 10 mongodb
 
-  docker logs -f --tail -n=1000 lyra.node
+  docker logs --follow --timestamps --details --tail 10 lyra.node
