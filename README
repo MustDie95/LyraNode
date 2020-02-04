@@ -1,5 +1,9 @@
-docker-compose -f lyra.yaml up -d
+1) Write current Lyra version to .env file
 
-docker logs -f --tail -n=1000 mongodb
+2) Start containers with: docker-compose -f lyra.yaml up -d --build
 
-docker logs -f --tail -n=1000 lyra.node
+3) Look into logs:
+  
+  docker logs -f --tail -n=1000 mongodb
+
+  docker logs -f --tail -n=1000 lyra.node
