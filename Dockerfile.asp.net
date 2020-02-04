@@ -13,7 +13,9 @@ RUN cat /etc/os-release && \
 RUN dotnet dev-certs https --clean && \
     dotnet dev-certs https
 
-EXPOSE 4503 4504 4505
+EXPOSE 4503
+EXPOSE 4504
+EXPOSE 4505
 
 WORKDIR /opt/lyra/node
 
