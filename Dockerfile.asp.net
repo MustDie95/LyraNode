@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1
 
-ARG LYRA_VERSION
+ARG LYRA_VERSION=1.2.1
 
 ENV LYRA_NETWORK=testnet
 
@@ -11,11 +11,12 @@ RUN cat /etc/os-release && \
     rm -rf /tmp/lyra.tar.gz /var/lib/apt/lists/*
 
 RUN dotnet dev-certs https --clean && \
-    dotnet dev-certs https && \
-    dotnet /opt/lyra/cli/lyracli.dll --networkid testnet -p webapi -g poswallet
+    dotnet dev-certs https
 
 EXPOSE 4505
 
 WORKDIR /opt/lyra/node
 
-CMD dotnet Lyra.Node2.dll
+COPY startup.sh /startup.sh
+
+CMD /startup.sh

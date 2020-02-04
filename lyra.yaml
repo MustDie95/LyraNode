@@ -5,7 +5,7 @@ version: '3.2'
 services:
 
   lyra.node:
-    image: lyranode:latest
+    image: lyranode:${VERSION}
     container_name : lyra.node
     depends_on: 
       - mongodb
@@ -13,13 +13,14 @@ services:
       context: .
       dockerfile: Dockerfile.asp.net
       args:
-        LYRA_VERSION: 1.1.19
+        LYRA_VERSION: ${VERSION}
     ports:
       - 4503:4503
       - 4504:4504
       - 4505:4505
     volumes:
       - ./config.testnet.json:/opt/lyra/node/config.testnet.json
+      - ./Lyra-CLI-testnet:/root/Lyra-CLI-testnet
 
   mongodb:
     image: mongo:4.2.3-bionic
