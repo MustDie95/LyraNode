@@ -18,9 +18,11 @@ services:
       - 4503:4503
       - 4504:4504
       - 4505:4505
+    links:
+      - mongodb
     volumes:
       - ./.Lyra:/root/.Lyra
-      - ./config.testnet.json:/root/.Lyra/config.testnet.json
+      - ./config.testnet.json:/opt/lyra/node/config.testnet.json
 
   mongodb:
     image: mongo:4.2.3-bionic
